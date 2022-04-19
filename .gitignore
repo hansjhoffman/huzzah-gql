@@ -20,5 +20,19 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-huzzah-*.tar
+huzzah*.tar
 
+# Editors
+.idea
+.nova
+.vscode
+
+# Misc
+.DS_Store
+
+# Logs
+*.log
+
+# Environment related stuff
+.env*
+.nix*
