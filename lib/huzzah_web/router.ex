@@ -9,6 +9,13 @@ defmodule HuzzahWeb.Router do
     pipe_through :api
   end
 
+  scope "/api", HuzzahWeb do
+    pipe_through :api
+
+    get "/assets", AssetsController, :index
+    get "/assets/:ticker", AssetController, :index
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

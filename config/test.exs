@@ -23,5 +23,8 @@ config :huzzah, HuzzahWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+# Mock all network requests
+config :tesla, adapter: Tesla.Mock
+
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
