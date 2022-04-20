@@ -1,5 +1,10 @@
 defmodule HuzzahWeb.Telemetry do
+  @moduledoc """
+  This module defines Telemetry related metrics.
+  """
+
   use Supervisor
+
   import Telemetry.Metrics
 
   def start_link(arg) do
