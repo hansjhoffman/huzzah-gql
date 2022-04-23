@@ -12,7 +12,7 @@ defmodule HuzzahWeb.Router do
   scope "/api", HuzzahWeb do
     pipe_through :api
 
-    get "/assets", AssetsController, :index
+    get "/market", MarketController, :index
     get "/assets/:ticker", AssetController, :index
   end
 

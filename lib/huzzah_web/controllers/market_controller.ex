@@ -1,4 +1,4 @@
-defmodule HuzzahWeb.AssetsController do
+defmodule HuzzahWeb.MarketController do
   use HuzzahWeb, :controller
 
   alias Huzzah.NomicsClient
