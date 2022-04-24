@@ -12,7 +12,7 @@ defmodule Huzzah.NomicsClient do
   plug Tesla.Middleware.Query, key: System.get_env("NOMICS_API_KEY")
   plug Tesla.Middleware.Telemetry
 
-  def market_cap(count \\ 10, page \\ 1) do
+  def market_cap(count \\ 100, page \\ 1) do
     url =
       Tesla.build_url("/currencies/ticker",
         interval: "1d",
