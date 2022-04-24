@@ -17,7 +17,14 @@ defmodule HuzzahWeb.MarketView do
                     short_form(val)
                 end,
               name: asset["name"],
-              price_change_pct: asset["1d"]["price_change_pct"],
+              price_change_pct:
+                case Float.parse(asset["1d"]["price_change_pct"]) do
+                  :error ->
+                    0.00
+
+                  {val, _} ->
+                    Float.round(val, 2)
+                end,
               price:
                 case Float.parse(asset["price"]) do
                   :error ->
