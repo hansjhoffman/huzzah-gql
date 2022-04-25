@@ -5,15 +5,20 @@ defmodule HuzzahWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", HuzzahWeb do
-    pipe_through :api
+  scope "/graphql" do
+    pipe_through [:api]
+
+    if Mix.env() in [:dev, :test] do
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: HuzzahWeb.Schema
+    end
+
+    forward "/", Absinthe.Plug, schema: HuzzahWeb.Schema
   end
 
-  scope "/api", HuzzahWeb do
-    pipe_through :api
+  scope "/health", HuzzahWeb do
+    pipe_through [:api]
 
-    get "/market", MarketController, :index
-    get "/assets/:ticker", AssetController, :index
+    get "/", HealthCheckController, :index
   end
 
   # Enables LiveDashboard only for development

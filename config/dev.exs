@@ -43,4 +43,4 @@ config :phoenix, :plug_init_mode, :runtime
 config :cors_plug,
   origin: ["https://localhost:3000"],
   max_age: 86_400,
-  methods: ["GET"]
+  methods: ["POST"]
