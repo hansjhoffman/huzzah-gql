@@ -9,7 +9,7 @@ defmodule HuzzahWeb.Resolvers.MarketResolver do
   #     {"x-pagination-total-items", "51118"},
   #   ],
   def market(_parent, args, _resolution) do
-    {:ok, response} = NomicsClient.market(args)
+    {:ok, %Tesla.Env{} = response} = NomicsClient.market(args)
 
     {:ok,
      List.foldl(response.body, [], fn asset, acc ->
@@ -19,6 +19,7 @@ defmodule HuzzahWeb.Resolvers.MarketResolver do
              (asset["symbol"] <> " " <> asset["name"])
              |> String.replace(" ", "-")
              |> String.downcase(),
+           circulating_supply: asset["circulating_supply"],
            logo_url: asset["logo_url"],
            market_cap:
              case Float.parse(asset["market_cap"]) do
@@ -28,6 +29,7 @@ defmodule HuzzahWeb.Resolvers.MarketResolver do
                {val, _} ->
                  short_form(val)
              end,
+           max_supply: asset["max_supply"],
            name: asset["name"],
            percent_change:
              case Float.parse(asset["1d"]["price_change_pct"]) do
